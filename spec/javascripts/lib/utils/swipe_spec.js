@@ -91,11 +91,12 @@ require([
             y: 50
           };
           window.swipe._gestureMoves({
-            changedTouches: [{
-              clientX: 100,
-              clientY: 52
-            }],
-            target: ".target"
+            originalEvent: {
+              changedTouches: [{
+                clientX: 100,
+                clientY: 52
+              }]
+            }
           });
           expect(window.swipe.difference).toEqual({
             x: 50,

@@ -74,8 +74,12 @@ define([
     if (this._isPointerTouchEvent(event) && event.buttons > 0)  {
       point = event;
     } else if (this._isW3CTouchEvent(event)) {
-      event.changedTouched && event.changedTouched.length && (point = event.changedTouches[0]);
-      event.targetTouches && event.targetTouches.length && (point = event.targetTouches[0]);
+      if (event.changedTouches && event.changedTouches.length) {
+        point = event.changedTouches[0];
+      }
+      if (event.targetTouches && event.targetTouches.length) {
+        point = event.targetTouches[0];
+      }
     } else {
       return false;
     }

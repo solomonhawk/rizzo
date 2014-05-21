@@ -209,20 +209,22 @@ define([
   };
 
   Slider.prototype._updateCount = function() {
-    var currentHTML = this.$sliderControlsContainer.find(".js-slider-next").html() || "",
+    var next = this.$sliderControlsContainer.find(".js-slider-next"),
+        previous = this.$sliderControlsContainer.find(".js-slider-previous"),
+        currentHTML = next.html() || "",
         nextIndex = Math.min(this.currentSlide + 1, this.$slides.length),
         prevIndex = Math.max(this.currentSlide - 1, 1);
 
     this.$sliderControlsContainer.removeClass("at-beginning at-end");
 
-    if (this.currentSlide === 1) {
+    if (this.currentSlide == 1) {
       this.$sliderControlsContainer.addClass("at-beginning");
-    } else if (this.currentSlide === this.$slides.length) {
+    } else if (this.currentSlide == this.$slides.length) {
       this.$sliderControlsContainer.addClass("at-end");
     }
 
-    this.$sliderControlsContainer.find(".js-slider-next").html(currentHTML.replace(/(^[0-9]+)/, nextIndex));
-    this.$sliderControlsContainer.find(".js-slider-previous").html(currentHTML.replace(/(^[0-9]+)/, prevIndex));
+    next.html(currentHTML.replace(/([0-9]+)/, nextIndex));
+    previous.html(currentHTML.replace(/([0-9]+)/, prevIndex));
     this.$sliderControlsContainer.find(".slider__pagination--link.is-active").removeClass("is-active");
     this.$sliderControlsContainer.find(".slider__pagination--link").eq(this.currentSlide - 1).addClass("is-active");
   };
