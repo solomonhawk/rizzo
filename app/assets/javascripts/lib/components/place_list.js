@@ -12,7 +12,7 @@ define([ "jquery", "lib/extends/events", "lib/utils/page_state" ], function($, E
     this.$el = $(args.el);
     this.$list = $(args.list);
 
-    this.$el && this.init();
+    this.$el.length && this.init();
 
   }
 
